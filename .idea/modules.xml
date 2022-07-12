@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java_algo/BOJ/bronze/BOJ3460/BOJ3460.iml" filepath="$PROJECT_DIR$/java_algo/BOJ/bronze/BOJ3460/BOJ3460.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BOJ/bronze/BOJ3460/BOJ3460.iml" filepath="$PROJECT_DIR$/BOJ/bronze/BOJ3460/BOJ3460.iml" />
       <module fileurl="file://$PROJECT_DIR$/java_algorithm-study.iml" filepath="$PROJECT_DIR$/java_algorithm-study.iml" />
     </modules>
   </component>
