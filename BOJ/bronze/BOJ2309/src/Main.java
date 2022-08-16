@@ -4,7 +4,7 @@ public class Main {
     static boolean flag = false;
 
     public static void DFS(List<Integer> man, int depth, List<Integer> visited) {
-        if (flag == true) {
+        if (flag) {
             return;
         }
         if (depth == 7) {
