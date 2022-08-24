@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BOJ/gold/BOJ1062/BOJ1062.iml" filepath="$PROJECT_DIR$/BOJ/gold/BOJ1062/BOJ1062.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/bronze/BOJ10818/BOJ10818.iml" filepath="$PROJECT_DIR$/BOJ/bronze/BOJ10818/BOJ10818.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/bronze/BOJ10870/BOJ10870.iml" filepath="$PROJECT_DIR$/BOJ/bronze/BOJ10870/BOJ10870.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/bronze/BOJ1292/BOJ1292.iml" filepath="$PROJECT_DIR$/BOJ/bronze/BOJ1292/BOJ1292.iml" />
