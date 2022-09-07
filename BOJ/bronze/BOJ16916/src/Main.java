@@ -52,9 +52,9 @@ public class Main {
                 lps[index] = length;
                 index += 1;
             } else {
-                if (length != 0) {
+                if (length != 0) { //중간부분에서 다른경우 해당인덱스과 건너뛴부분에서 같은부분이있나 확인
                     length = lps[length - 1];
-                } else {
+                } else { //처음부터 다르면 또는 해당인덱스와 같은 게 없으면 +1
                     lps[index] = 0;
                     index += 1;
                 }
