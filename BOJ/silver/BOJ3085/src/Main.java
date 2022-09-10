@@ -19,13 +19,13 @@ public class Main {
         ArrayList<String>[] board = new ArrayList[N];
 
         for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
+            String candy = br.readLine();
             board[i] = new ArrayList<>();
-
-            while (st.hasMoreTokens()) {
-                board[i].add(st.nextToken());
-
+            for (int j = 0; j < N; j++) {
+                board[i].add(String.valueOf(candy.charAt(j)));
             }
+
+
         }
         int total = 0;
 
@@ -38,13 +38,15 @@ public class Main {
                     cc = i + dc[k];
                     cr = j + dr[k];
 
-                    if ((0 <= cc && cc < board.length) && (0 <= cr && cr < board.length)) {
+                    if (!(0 > cc || cc >= N || 0 > cr || cr >= N)) {
                         if (!(board[cc].get(cr).equals(board[i].get(j)))) {
                             String tmp = board[cc].get(cr);
                             String Nowtmp = board[i].get(j);
                             board[i].set(j, tmp);
-                            total = CountCandy(board);
+                            board[cc].set(cr, Nowtmp);
+                            total = Integer.max(total,CountCandy(board));
                             board[i].set(j, Nowtmp);
+                            board[cc].set(cr, tmp);
 
                         }
 
@@ -53,9 +55,9 @@ public class Main {
                 }
             }
 
-            System.out.println(total);
 
         }
+        System.out.println(total);
 
 
     }
@@ -68,13 +70,13 @@ public class Main {
         for (int i = 0; i < N; i++) {
             int rowCnt = 1;
             int colCnt = 1;
-            for (int j = 0; j < board[i].size() - 1; j++) {
-                if (board[i].get(j).equals( board[i].get(j + 1))) {
+            for (int j = 0; j < N - 1; j++) {
+                if (board[i].get(j).equals(board[i].get(j + 1))) {
                     rowCnt += 1;
                 } else {
                     rowCnt = 1;
                 }
-                if (board[j + 1].get(i).equals( board[j].get(i))) {
+                if (board[j + 1].get(i).equals(board[j].get(i))) {
                     colCnt += 1;
                 } else {
                     colCnt = 1;
