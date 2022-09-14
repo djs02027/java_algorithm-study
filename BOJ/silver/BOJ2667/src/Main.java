@@ -1,18 +1,18 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.util.concurrent.DelayQueue;
 
 public class Main {
+    static int count=0;
+    static int [][] vistied ;
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         ArrayList<Integer>[] MAP = new ArrayList[n];
-        int [][] vistied = new int[n][n];
+        vistied = new int[n][n];
         for (int i = 0; i < n; i++) {
             MAP[i] = new ArrayList<>();
         }
@@ -27,23 +27,37 @@ public class Main {
             }
         }
         int MapCnt=0;
+        Deque<Integer> answer= new LinkedList<>();
         for(int i=0;i<n;i++){
             for(int j=0; j<n;j++){
                 if(MAP[i].get(j)==1){
                     if (vistied[i][j]==0){
                         vistied[i][j]=1;
-                        int count=Find(MAP,vistied,i,j,n,1);
+                        count= 1;
+                        Find(MAP,i,j,n);
                         MapCnt+=1;
-                        System.out.println(count);
+                        answer.offer(count);
                     }
 
                 }
             }
         }
+        int [] result = new int [MapCnt];
+        System.out.println(MapCnt);
+        int k=0;
+        while (!(answer.isEmpty())){
+            result[k]= answer.pollFirst();
+            k++;
+        }
+        Arrays.sort(result);
+        for (int re:
+             result) {
+            System.out.println(re);
+        }
 
     }
 
-    public static int Find(ArrayList<Integer>[] MAP,int[][] vistied, int i, int j, int n, int count) {
+    static void Find(ArrayList<Integer>[] MAP, int i, int j, int n ) {
         int [] dc={0,0,-1,1};
         int [] dr={1,-1,0,0};
         for(int k=0;k<4;k++){
@@ -54,15 +68,15 @@ public class Main {
                     if(vistied[nc][nr]==0){
                         vistied[nc][nr]=1;
                         count+=1;
-                        Find(MAP,vistied,nc,nr,n,count);
-                        vistied[nc][nr]=0;
+                        Find(MAP,nc,nr,n);
+
                     }
 
                 }
             }
 
         }
-        return count;
+
 
     }
 }
