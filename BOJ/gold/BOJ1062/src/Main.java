@@ -1,65 +1,72 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int result = 0;
 
-    public static void main(String[] args) {
-        String[] template = {"a", "n", "t", "i", "c"};
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int K = sc.nextInt();
-        String[] words = new String[N];
-        int[] alpa = new int[26];
+
+    static String[] words;
+    static int[] alpa;
+    static int total = 0;
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        words = new String[N];
+        alpa = new int[26];
+        alpa['a' - 97] = 1;
+        alpa['n' - 97] = 1;
+        alpa['t' - 97] = 1;
+        alpa['i' - 97] = 1;
+        alpa['c' - 97] = 1;
+        int alpaCnt = K - 5;
         for (int i = 0; i < N; i++) {
-            String word = sc.next();
-            words[i] = word;
+            words[i] = br.readLine();
         }
-        for (int i = 0; i < template.length; i++) {
-            String st = template[i];
-            char[] charArr = st.toCharArray();
-            for (char ch : charArr) {
-                alpa[ch - 'a'] = 1;
-            }
-        }
-        if (K>=5){
-            FindWords(K, alpa, words, 0, 0);
-            System.out.println(result);
-        }else {
+        if (K < 5) {
             System.out.println(0);
+        } else {
+            countFind(0,0, alpaCnt);
+            System.out.println(total);
         }
-
-
 
     }
 
-    private static void FindWords(int K, int[] alpa, String[] words, int total, int index) {
-        if (total == K - 5) {
-            int tmp = 0;
+    private static void countFind(int index, int depth, int alpaCnt) {
+
+        if (depth == alpaCnt) {
+            int matchCount = 0;
             for (int i = 0; i < words.length; i++) {
-                char[] charArr = words[i].toCharArray();
-                boolean flag = false;
-                for (char ch : charArr) {
-                    if (alpa[ch - 'a'] == 0) {
-                        flag = true;
+                char[] charr = words[i].toCharArray();
+                int flag=0;
+                for(char ch :charr){
+                    if (alpa[ch-97]==0){
+                        flag=1;
                         break;
                     }
                 }
-                if (!flag) {
-                    tmp += 1;
-                    result = Integer.max(result, tmp);
+                if (flag == 0) {
+                    matchCount += 1;
+                    total = Math.max(total, matchCount);
                 }
             }
             return;
-
-
         }
         for (int i = index; i < alpa.length; i++) {
-            if (alpa[i] != 1) {
+            if (alpa[i] == 0) {
                 alpa[i] = 1;
-                FindWords(K, alpa, words, total + 1, i);
+                countFind(i, depth + 1, alpaCnt);
                 alpa[i] = 0;
+
             }
         }
 
+
     }
+
+
 }
