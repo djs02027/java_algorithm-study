@@ -47,6 +47,8 @@ public class Main {
 
     }
 
+
+
     private static void DFS(int col, int row, char pattern) {
         for (int i = 0; i < 4; i++) {
             int cc = col + dc[i];
