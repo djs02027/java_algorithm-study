@@ -13,7 +13,7 @@ public class Main {
                 dp[time+i]=Math.max(dp[i]+money,dp[time+i]);
             }
 
-//          해당 날짜에 받지 않는다면 0이 아니라 이전에 정산받았던 금액이 누적되므로..
+
             dp[i+1]=Math.max(dp[i+1],dp[i]);
         }
         System.out.println(dp[N+1]);
