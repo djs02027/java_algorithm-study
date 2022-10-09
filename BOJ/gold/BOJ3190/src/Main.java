@@ -113,8 +113,8 @@ public class Main {
                 }
 
             }
-            boolean isClush=checkClushSnake(st, snakeLen);
-            if(isClush==true){
+            boolean isClush = checkClushSnake(st, snakeLen);
+            if (isClush == true) {
                 break;
             }
 
@@ -170,13 +170,13 @@ public class Main {
 
     private static boolean checkClushSnake(Stack<Place> st, int snakeLen) {
         Place tmp = st.peek();
-        int c=tmp.col;
-        int r=tmp.row;
-        for(int i=1; i<=snakeLen;i++){
-            if(st.size()-1-i>0){
-                int cc=st.elementAt(st.size()-1-i).col;
-                int cr=st.elementAt(st.size()-1-i).row;
-                if(c==cc && r==cr){
+        int c = tmp.col;
+        int r = tmp.row;
+        for (int i = 1; i <= snakeLen; i++) {
+            if (st.size() - 1 - i > 0) {
+                int cc = st.elementAt(st.size() - 1 - i).col;
+                int cr = st.elementAt(st.size() - 1 - i).row;
+                if (c == cc && r == cr) {
                     return true;
 
 
@@ -185,10 +185,6 @@ public class Main {
 
         }
         return false;
-
-
-
-
 
 
     }
