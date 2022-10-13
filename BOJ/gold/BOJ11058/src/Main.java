@@ -4,18 +4,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        int[] dp = new int[N + 1];
-        for (int i = 0; i < dp.length; i++) {
+        long[] dp = new long[101];
+        for (int i = 0; i < 7; i++) {
             dp[i] = i;
         }
-        if (N <= 6) {
-            System.out.println(N);
-        } else {
-            for (int i = 1; i < dp.length; i++) {
-                for (int j = 1; j < i; j++) {
 
-                }
+
+        for (int i = 7; i < dp.length; i++) {
+            dp[i]=dp[i-1]+1;
+            for (int j = 0; j < 3; j++) {
+                dp[i] = Math.max(dp[i], dp[i - 3 - j] * (2 + j));
+
             }
         }
+        System.out.println(dp[N]);
     }
 }
