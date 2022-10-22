@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BOJ/gold/BOJ1038/BOJ1038.iml" filepath="$PROJECT_DIR$/BOJ/gold/BOJ1038/BOJ1038.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/gold/BOJ1062/BOJ1062.iml" filepath="$PROJECT_DIR$/BOJ/gold/BOJ1062/BOJ1062.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BOJ/silver/BOJ10819/BOJ10819.iml" filepath="$PROJECT_DIR$/BOJ/silver/BOJ10819/BOJ10819.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BOJ/silver/BOJ10973/BOJ10973.iml" filepath="$PROJECT_DIR$/BOJ/silver/BOJ10973/BOJ10973.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BOJ/silver/BOJ10974/BOJ10974.iml" filepath="$PROJECT_DIR$/BOJ/silver/BOJ10974/BOJ10974.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/gold/BOJ11058/BOJ11058.iml" filepath="$PROJECT_DIR$/BOJ/gold/BOJ11058/BOJ11058.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/gold/BOJ1197_kruskal/BOJ1197_kruskal.iml" filepath="$PROJECT_DIR$/BOJ/gold/BOJ1197_kruskal/BOJ1197_kruskal.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ/silver/BOJ12026/BOJ12026.iml" filepath="$PROJECT_DIR$/BOJ/silver/BOJ12026/BOJ12026.iml" />
