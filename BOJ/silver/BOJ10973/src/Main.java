@@ -22,7 +22,7 @@ public class Main {
         //
         if (perm()) {
             for (int i = 0; i < N; i++) {
-                System.out.println(num[i]+" ");
+                System.out.print(num[i]+" ");
             }
         }else {
             System.out.println(-1);
