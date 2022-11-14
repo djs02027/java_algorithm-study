@@ -1,51 +1,41 @@
 import java.util.*;
 
 public class Main {
-    static boolean flag = false;
+    static boolean flag ;
 
-    public static void DFS(List<Integer> man, int depth, List<Integer> visited) {
-        if (flag) {
-            return;
+    public static void main(String[] args) {
+        Scanner sc =new Scanner(System.in);
+        int [] man = new int [9];
+        boolean [] check = new boolean[9];
+        for (int i = 0; i < 9; i++) {
+            man[i]=sc.nextInt();
         }
-        if (depth == 7) {
-            int total = 0;
-            for (int i = 0; i < visited.size(); i++) {
-                total += visited.get(i);
-            }
-            if (total == 100) {
+        Arrays.sort(man);
+        FindMan(man, check, 0,0);
 
-                for (int i = 0; i < visited.size(); i++) {
-                    System.out.println(visited.get(i));
-                }
-                flag = true;
-            }
-        } else {
-            for (int i = depth; i < man.size(); i++) {
-                if (!visited.contains(man.get(i))) {
-                    visited.add(man.get(i));
-                    DFS(man, depth + 1, visited);
-                    visited.remove(visited.size() - 1);
-
-                }
-            }
-        }
 
 
     }
-
-    public static void main(String[] args) {
-        List<Integer> numbers = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < 9; i++) {
-            int N = sc.nextInt();
-            numbers.add(N);
+    private static void FindMan(int [] man, boolean [] check, int cac, int r){
+        if(flag==true){
+            return;
         }
-        List<Integer> visited = new ArrayList<>();
+        if(r==7 && cac==100){
+            for (int i = 0; i < check.length; i++) {
+                if(check[i]==true){
+                    System.out.println(man[i]);
+                }
+            }
+            flag=true;
 
+        }
+        for (int i = r; i < 9; i++) {
+            if(!check[i]){
+                check[i]=true;
+                FindMan(man,check,cac+man[i], r+1);
+                check[i]=false;
+            }
 
-        Collections.sort(numbers);
-        DFS(numbers, 0, visited);
-
-
+        }
     }
 }
