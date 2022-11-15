@@ -4,61 +4,61 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int N;
-    static int[] num;
+
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        N = Integer.parseInt(br.readLine());
-        num = new int[N];
-        int i = 0;
+        int N= Integer.parseInt(br.readLine());
+        int [] number = new int [N];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        while (st.hasMoreTokens()) {
-            num[i] = Integer.parseInt(st.nextToken());
-            i++;
+        int j=0;
+        while (st.hasMoreTokens()){
+            number[j]=Integer.parseInt(st.nextToken());
+            j++;
         }
-
-        if(perm()){
-            for (int j = 0; j < num.length; j++) {
-                System.out.print(num[j]+" ");
+        if(NextPerm(number, N)){
+            for (int i = 0; i < number.length; i++) {
+                System.out.print(number[i]+" ");
             }
         }else {
             System.out.println(-1);
         }
+
+
     }
 
-    private static boolean perm() {
-        //먼저 배열의 뒤 부터 두개씩 비교하여 뒷부분의 숫자가 더 큰 경우가 있는 인덱스를 찾는다.
-        //없는 경우 -1를 출력하고 종료한다.
-        int i = N-1;
-        while (i >0 && num[i-1] >= num[i]) i--;
+    private static boolean NextPerm(int[] number, int n) {
+        int i = n-1;
+        //뒤에서 부터 오름차순이 끊긴 지점을 찾는다.
+        while (i>0 && number[i-1]>=number[i]) i--;
         if(i==0){
             return false;
         }
-        //i-1를 이후로 경계로 두어 배열의 뒤에서 부터 i-1과 비교하여 i-1보다 큰 값을 찾는다.
-        //예 3 4 | 1 2 5 로 나뉘고 뒤부터 앞의 경계값인 2와 비교한다.
-        int j = N-1;
-        while ( num[i - 1] >= num[j]) j--;
+        int j=n-1;
+        // 끊긴 지점의 뒷 수보다 큰 수를 뒤에서 부터 찾는다.
+        while (number[i-1]>=number[j]) j--;
+        int tmp = number[i-1];
+        number[i-1]= number[j];
+        number[j]=tmp;
 
-        //i-1자리와 j를 스왑하여 위치 바꾼다.
-        //예 3 4 1 5 2
-        int tmp = num[i-1];
-        num[i-1]=num[j];
-        num[j]=tmp;
-
-        //i-1 자리 이후 정렬이 필요한 경우
-        //i-1 이후  i~N-1 자리까지 오름 차순으로 정렬 한다.
-        j=N-1;
+        //끊긴지점 앞부분들의 수를 오름차순으로 정렬을 해준다.
+        j=n-1;
         while (i<j){
-            tmp = num[i];
-            num[i] = num[j];
-            num[j] = tmp;
-            i += 1;
-            j -= 1;
-        }
+            tmp=number[i];
+            number[i]=number[j];
+            number[j]=tmp;
+            i+=1;
+            j-=1;
 
+        }
         return true;
+
+
+
+
+
     }
+
+
 }
