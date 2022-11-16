@@ -12,17 +12,15 @@ public class Main {
         perm(N, visited, num, 0);
     }
 
-    private static void perm(int n, int [] visited, int [] num,  int r) {
-        if(n==r){
-            StringBuilder sb =new StringBuilder();
+    private static void perm(int n, int[] visited, int[] num, int r) {
+        if(r==n){
+            StringBuilder sb = new StringBuilder();
+
             for (int i = 0; i < num.length; i++) {
-                sb.append(num[i]+" ");
+                sb.append(num[i]).append(" ");
             }
-            System.out.println(sb.toString());
-
-            return;
+            System.out.println(sb);
         }
-
         for (int i = 0; i < n; i++) {
             if(visited[i]==0){
                 visited[i]=1;
@@ -31,7 +29,7 @@ public class Main {
                 visited[i]=0;
             }
 
-
         }
     }
+
 }

@@ -1,30 +1,36 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-
-        int N = Integer.parseInt(br.readLine());
-        int [] dp =new int [N+2];
-        int [] T = new int [N+1];
-        int [] P =new int [N+1];
-
-        for (int i = 0; i < N; i++) {
-            String [] tmp= br.readLine().split(" ");
-            int t = Integer.parseInt(tmp[0]);
-            int p = Integer.parseInt(tmp[1]);
-
-            if(t+i<=N+1){
-                dp[i+t]=Math.max(dp[i]+p, dp[i+t]);
-            }
-            dp[i+1]=Math.max(dp[i+1],dp[i]);
-
+        int n = Integer.parseInt(br.readLine());
+        StringTokenizer st;
+        int[] period = new int[n];
+        int[] cost = new int[n];
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            int t = Integer.parseInt(st.nextToken());
+            int p = Integer.parseInt(st.nextToken());
+            period[i] = t;
+            cost[i] = p;
         }
-        System.out.println(dp[N]);
+        int [] dp = new int[n+2];
+        for (int i = 0; i < n; i++) {
+            if(period[i]+i<=n+1){
+                dp[period[i]+i]=Math.max(dp[period[i]+i], dp[i]+cost[i]);
+
+            }
+            dp[i+1]=Math.max(dp[i],dp[i+1]);
+        }
+        System.out.println(dp[n]);
+
+
+
+
 
     }
 }
