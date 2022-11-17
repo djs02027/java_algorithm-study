@@ -5,60 +5,59 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int minv = Integer.MAX_VALUE;
+    static int answer = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        StringTokenizer st;
-        int[][] Link = new int[N][N];
-        int[] Team = new int[N];
-        for (int i = 0; i < N; i++) {
+        BufferedReader br  = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int [][] team = new int [n][n];
+        StringTokenizer st ;
+
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            int j = 0;
-            while (st.hasMoreTokens()) {
-                Link[i][j] = Integer.parseInt(st.nextToken());
+            int j=0;
+            while (st.hasMoreTokens()){
+                team[i][j]=Integer.parseInt(st.nextToken());
                 j++;
             }
         }
-        FindTeam(Link, Team, N, 0, 0);
-        System.out.println(minv);
+        boolean [] visited = new boolean [n];
+        teamMatch(team,visited, n,0,0);
+        System.out.println(answer);
 
+        
 
     }
 
-    private static void FindTeam(int[][] link, int[] team, int n, int r, int idx) {
-        if (r == n / 2) {
-            FindIndex(team, link);
+    private static void teamMatch(int[][] team, boolean[] visited, int n, int r, int idx) {
+        if(r==n/2){
+            teamAnalysis(team, visited);
             return;
         }
         for (int i = idx; i < n; i++) {
-            if (team[i] == 0) {
-                team[i] = 1;
-                FindTeam(link, team, n, r + 1, i + 1);
-                team[i] = 0;
+            if(!visited[i]){
+                visited[i]=true;
+                teamMatch(team, visited, n, r+1,i+1);
+                visited[i]=false;
             }
-
-
         }
     }
 
-    private static void FindIndex(int[] team, int[][] link) {
-        int teamA = 0;
-        int teamB = 0;
+    private static void teamAnalysis(int[][] team, boolean[] visited) {
+        int TeamA=0;
+        int TeamB=0;
         for (int i = 0; i < team.length; i++) {
-            for (int j = i + 1; j < team.length; j++) {
-                if (team[i] == 1 && team[j] == 1) {
-                    teamA += (link[i][j] + link[j][i]);
+            for (int j = i+1; j < team[i].length; j++) {
 
-                } else if (team[i] == 0 && team[j] == 0) {
-                    teamB += (link[i][j] + link[j][i]);
+                if(visited[i]== true && visited[j]==true){
+                    TeamA+=(team[i][j]+team[j][i]);
+                } else if (visited[i]==false && visited[j]== false) {
+                    TeamB+=(team[i][j]+team[j][i]);
                 }
-            }
 
+            }
         }
-        int cac=Math.abs(teamA - teamB);
-        minv=Math.min(minv,cac);
+        answer=Math.min(answer,Math.abs(TeamA-TeamB));
     }
 
 
